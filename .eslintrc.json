@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": false,
+        "node": true,
+        "es6": true
+    },
+    "plugins": [
+        "prettier",
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "settings": {
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "rules": {
+        "prettier/prettier": ["warn",  {"endOfLine": "lf"}],
+        "max-len": [2, 120, 4, {"ignoreUrls": true}],
+        "semi": ["warn", "always"]
+    }
+}
