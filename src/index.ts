@@ -1,18 +1,26 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import config from '~/config';
+import mongodbService from '~/services/mongodbService';
+
+import authRoutes from '~/controllers/authRoutes';
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 8080;
+mongodbService
+    .init()
+    .then(() => console.log('connected to mongodb'))
+    .catch((err) => console.log('mongodb connection error', err));
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Express + TypeScript Server');
 });
 
-app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+app.use('/auth', authRoutes);
+
+app.listen(config.port, () => {
+    console.log(`⚡️[server]: Server is running at http://localhost:${config.port}`);
 });

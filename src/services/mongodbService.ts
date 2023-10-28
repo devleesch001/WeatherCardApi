@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
+import config from '~/config';
 
 export const init = async () => {
-    await mongoose.connect(process.env.MANGODB_URL ?? 'mongodb://root:example@127.0.0.1:27017');
+    await mongoose.connect(config.mongo.url);
 };
 
 export default { init };

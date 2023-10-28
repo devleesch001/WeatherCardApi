@@ -1,8 +1,20 @@
+version: '2.8'
 services:
   mongo:
-    image: mongo:latest
-    container_name: mongo
+    image: mongo:7.0.2
+    restart: always
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
-      - ./data:/data/db
+      - "./data/db:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  mongo-express:
+    image: mongo-express:1.0.0-20
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
