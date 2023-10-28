@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+import * as process from 'process';
+import { Secret } from 'jsonwebtoken';
 
 dotenv.config();
 dotenv.config({ path: `.env.local`, override: true });
@@ -22,6 +24,7 @@ export const constants = {
 export default {
     port: process.env.PORT || '8080',
     mongo: {
-        url: process.env.MANGODB_URL ?? 'mongodb://root:example@localhost:27017/',
+        url: process.env.MANGODB_URL || 'mongodb://root:example@localhost:27017/',
     },
+    accessTokenSecret: process.env.ACCESS_TOKEN_SECRET as Secret,
 };

@@ -4,7 +4,7 @@ import cors from 'cors';
 import config from '~/config';
 import mongodbService from '~/services/mongodbService';
 
-import authRoutes from '~/controllers/authRoutes';
+import indexRoutes from '~/controllers/index';
 
 const app = express();
 app.use(cors());
@@ -19,7 +19,7 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Express + TypeScript Server');
 });
 
-app.use('/auth', authRoutes);
+app.use('/', indexRoutes);
 
 app.listen(config.port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${config.port}`);

@@ -4,6 +4,7 @@ import User from '~/models/user';
 import { body, validationResult } from 'express-validator';
 import { MongoError } from 'mongodb';
 import { constants } from '~/config';
+import { generateAccessToken } from '~/services/authenticationService';
 
 const router = Router();
 
@@ -28,7 +29,7 @@ router.post(
         // Save user
         user.save()
             .then(() => {
-                res.status(201).json({ user: user.serialize() });
+                res.status(201).json({ token: generateAccessToken(user) });
             })
             .catch((err: MongoError) => {
                 if (err.code === 11000) {
@@ -60,27 +61,8 @@ router.post(
                 return res.status(400).json({ code: 400, message: 'Wrong password' });
             }, 3000);
 
-        return res.status(200).json({ user: user.serialize() });
+        return res.status(200).json({ token: generateAccessToken(user) });
     }
 );
-
-router.post('/test', (req, res) => {
-    console.log('test');
-    const user = new User({
-        username: 'AAAA',
-        email: 'alexis@AAAA.fr',
-        password: 'test',
-        favorites: [],
-        hashedPassword: 'aa',
-    });
-
-    user.save()
-        .then(() => {
-            res.status(201).send({ user: 'ok' });
-        })
-        .catch((err: Error) => {
-            res.status(500).send({ code: 500, message: err.message });
-        });
-});
 
 export default router;
