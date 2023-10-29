@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import User from '~/models/user';
-// import { generateAccessToken } from '~/services/AuthenticationService';
 import { body, validationResult } from 'express-validator';
 import { MongoError } from 'mongodb';
-import { constants } from '~/config';
+
 import { generateAccessToken } from '~/services/authenticationService';
+import User from '~/models/user';
+import { constants } from '~/config';
 
 const router = Router();
 

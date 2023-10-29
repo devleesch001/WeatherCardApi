@@ -26,5 +26,9 @@ export default {
     mongo: {
         url: process.env.MANGODB_URL || 'mongodb://root:example@localhost:27017/',
     },
-    accessTokenSecret: process.env.ACCESS_TOKEN_SECRET as Secret,
+    JWTokenSecret: process.env.JWTOKEN_SECRET as Secret,
+    openWeatherMap: {
+        url: process.env.OPENWEATHERMAP_URL,
+        apiKey: process.env.OPENWEATHERMAP_API_KEY,
+    },
 };
