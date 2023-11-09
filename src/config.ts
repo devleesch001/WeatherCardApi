@@ -26,6 +26,9 @@ export default {
     mongo: {
         url: process.env.MANGODB_URL || 'mongodb://root:example@localhost:27017/',
     },
+    redis: {
+        url: process.env.REDIS_URL,
+    },
     JWTokenSecret: process.env.JWTOKEN_SECRET as Secret,
     openWeatherMap: {
         url: process.env.OPENWEATHERMAP_URL,

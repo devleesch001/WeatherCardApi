@@ -1,5 +1,14 @@
 version: '2.8'
 services:
+  redis:
+    image: redis/redis-stack:7.2.0-v6
+    restart: always
+    ports:
+      - "6379:6379"
+      - "8001:8001"
+    volumes:
+      - "./data/redis:/data"
+
   mongo:
     image: mongo:7.0.2
     restart: always

@@ -5,6 +5,7 @@ import config from '~/config';
 import mongodbService from '~/services/mongodbService';
 
 import indexRoutes from '~/controllers/index';
+import redisService from '~/services/redisService';
 
 const app = express();
 app.use(cors());
@@ -14,6 +15,11 @@ mongodbService
     .init()
     .then(() => console.log('connected to mongodb'))
     .catch((err) => console.log('mongodb connection error', err));
+
+redisService
+    .init()
+    .then(() => console.log('connected to redis'))
+    .catch((err) => console.log('redis connection error', err));
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Express + TypeScript Server');
